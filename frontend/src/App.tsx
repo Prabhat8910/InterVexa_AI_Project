@@ -21,7 +21,6 @@ import RecruiterDashboard from './pages/RecruiterDashboard';
 import UniversityDashboard from './pages/UniversityDashboard';
 import AdminDashboard from './pages/AdminDashboard';
 import LiveInterviewRoom from './pages/LiveInterviewRoom';
-import InterviewScheduler from './pages/InterviewScheduler';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
 
@@ -53,7 +52,6 @@ const App: React.FC = () => {
               <Route path="/career" element={<CareerAdvisor />} />
               <Route path="/analytics" element={<PlacementAnalytics />} />
               <Route path="/live-interview" element={<LiveInterviewRoom />} />
-              <Route path="/scheduler" element={<InterviewScheduler />} />
               
               {/* Evaluation Report Detail (All Roles with Auth) */}
               <Route path="/report/:id" element={<ReportDetail />} />

@@ -12,8 +12,7 @@ import {
   Database, 
   LogOut, 
   Brain,
-  Video,
-  Calendar
+  Video
 } from 'lucide-react';
 
 export const Sidebar: React.FC = () => {
@@ -30,11 +29,6 @@ export const Sidebar: React.FC = () => {
     { name: 'Career Advisor', path: '/career', icon: <Map className="h-5 w-5" /> },
     { name: 'Placement Analytics', path: '/analytics', icon: <TrendingUp className="h-5 w-5" /> },
     { name: 'Live Interview Room', path: '/live-interview', icon: <Video className="h-5 w-5" />, badge: 'NEW' },
-    { 
-      name: 'Interview Scheduler', 
-      path: '/scheduler', 
-      icon: <Calendar className="h-5 w-5 text-brandPrimary" />
-    },
   ];
 
   const recruiterMenu = [
