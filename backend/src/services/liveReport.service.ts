@@ -2,7 +2,6 @@ import LiveInterviewSession from '../models/LiveInterviewSession';
 import StudentProfile from '../models/StudentProfile';
 import User from '../models/User';
 import Report from '../models/Report';
-import Meeting from '../models/Meeting';
 import { groq } from '../config/groq';
 import { isSkipOrMeaninglessAnswer } from '../agent/handler';
 
@@ -270,9 +269,6 @@ Detailed Review: ${ea.evaluationFeedback || 'N/A'}`;
     session.status = 'completed';
     session.completedAt = new Date();
     await session.save();
-
-    // Update associated Meeting status to completed
-    await Meeting.findOneAndUpdate({ roomId: session.roomId }, { status: 'completed' });
 
     // 5. Update Candidate profile metrics for placement readiness
     if (profile && session.candidateId) {

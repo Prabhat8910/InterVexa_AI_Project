@@ -15,7 +15,6 @@ import recruiterRoutes from './routes/recruiter.routes';
 import universityRoutes from './routes/university.routes';
 import adminRoutes from './routes/admin.routes';
 import liveInterviewRoutes from './routes/liveInterview.routes';
-import schedulerRoutes from './routes/scheduler.routes';
 
 import { errorHandler } from './middleware/error.middleware';
 
@@ -23,14 +22,28 @@ const app: Application = express();
 
 // Security Middlewares
 app.use(helmet());
-const allowedOrigin = process.env.CLIENT_URL;
-if (process.env.NODE_ENV === 'production' && !allowedOrigin) {
-  console.warn('WARNING: CLIENT_URL environment variable is not defined in production CORS config.');
-}
+const allowedOrigins = [
+  "http://localhost:5173",
+  process.env.CLIENT_URL,
+  "https://intervexa-ai-project.vercel.app",
+  "https://intervexa-ai-project-jmeqbujr0-prabhat8910s-projects.vercel.app"
+].filter(Boolean);
 
-app.use(cors({
-  origin: allowedOrigin || 'http://localhost:5173',
-  credentials: true
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      // Allow requests without origin (Postman, server-to-server)
+      if (!origin) {
+        return callback(null, true);
+      }
+
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      return callback(new Error("CORS: Origin not allowed"));
+    },
+    credentials: true,
 }));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
@@ -75,7 +88,6 @@ app.use('/api/v1/recruiter', recruiterRoutes);
 app.use('/api/v1/university', universityRoutes);
 app.use('/api/v1/admin', adminRoutes);
 app.use('/api/v1/live-interview', liveInterviewRoutes);
-app.use('/api/v1/scheduler', schedulerRoutes);
 
 // Global Error Handler Middleware
 app.use(errorHandler);

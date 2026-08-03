@@ -4,7 +4,6 @@ import { v4 as uuidv4 } from 'uuid';
 import { generateParticipantToken } from '../config/livekit';
 import LiveInterviewSession from '../models/LiveInterviewSession';
 import User from '../models/User';
-import Meeting from '../models/Meeting';
 import { LiveInterviewAgent } from '../agent/liveHandler';
 import { generateLiveReport } from '../services/liveReport.service';
 
@@ -174,9 +173,6 @@ export const endLiveRoom = async (req: AuthRequest, res: Response, next: NextFun
       session.status = 'failed';
       session.completedAt = new Date();
       await session.save();
-
-      // Update associated Meeting status to cancelled
-      await Meeting.findOneAndUpdate({ roomId: session.roomId }, { status: 'cancelled' });
     }
 
     // Cleanup/Disconnect background LiveKit Agent participant

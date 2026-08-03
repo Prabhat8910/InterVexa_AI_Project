@@ -4,7 +4,6 @@ import { v4 as uuidv4 } from 'uuid';
 import { generateParticipantToken } from '../config/livekit';
 import InterviewSession from '../models/InterviewSession';
 import LiveInterviewSession from '../models/LiveInterviewSession';
-import Meeting from '../models/Meeting';
 import Report from '../models/Report';
 import User from '../models/User';
 import StudentProfile from '../models/StudentProfile';
@@ -125,11 +124,6 @@ export const getReport = async (req: AuthRequest, res: Response, next: NextFunct
       const liveSession = await LiveInterviewSession.findById(report.interviewId);
       if (liveSession && liveSession.interviewerId && liveSession.interviewerId.toString() === req.user.id) {
         isAllowed = true;
-      } else {
-        const meeting = await Meeting.findOne({ roomId: liveSession?.roomId || id });
-        if (meeting && (meeting.createdBy.toString() === req.user.id || meeting.interviewerEmail === req.user.email)) {
-          isAllowed = true;
-        }
       }
     }
 
@@ -169,11 +163,6 @@ export const downloadReportPDF = async (req: AuthRequest, res: Response, next: N
       const liveSession = await LiveInterviewSession.findById(report.interviewId);
       if (liveSession && liveSession.interviewerId && liveSession.interviewerId.toString() === req.user.id) {
         isAllowedPDF = true;
-      } else {
-        const meeting = await Meeting.findOne({ roomId: liveSession?.roomId || id });
-        if (meeting && (meeting.createdBy.toString() === req.user.id || meeting.interviewerEmail === req.user.email)) {
-          isAllowedPDF = true;
-        }
       }
     }
 
