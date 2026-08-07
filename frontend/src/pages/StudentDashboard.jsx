@@ -63,47 +63,47 @@ export const StudentDashboard = () => {
     })).reverse() || [];
     return (<div className="space-y-6">
       {/* Welcome Card */}
-      <div className="rounded-2xl border border-white/10 bg-gradient-to-r from-brandPrimary/20 to-brandSecondary/10 p-6 md:p-8">
-        <h2 className="text-2xl font-bold md:text-3xl text-white">
+      <div className="rounded-2xl border dark:border-white/10 border-indigo-200 bg-gradient-to-r from-brandPrimary/20 to-brandSecondary/10 p-6 md:p-8">
+        <h2 className="text-2xl font-bold md:text-3xl dark:text-white text-lightText">
           Welcome back, {data?.user?.name}!
         </h2>
-        <p className="mt-2 text-sm text-gray-300 md:text-base max-w-xl">
-          Your target setup is currently targeted at the <span className="text-white font-semibold">{data?.metrics?.targetRole}</span> position at <span className="text-white font-semibold">{data?.metrics?.targetCompany}</span>.
+        <p className="mt-2 text-sm dark:text-gray-300 text-lightMuted md:text-base max-w-xl">
+          Your target setup is currently targeted at the <span className="dark:text-white text-lightText font-semibold">{data?.metrics?.targetRole}</span> position at <span className="dark:text-white text-lightText font-semibold">{data?.metrics?.targetCompany}</span>.
         </p>
       </div>
 
       {/* Metrics Cards */}
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
-        <div className="rounded-2xl border border-white/10 bg-cardBg p-6 backdrop-blur">
+        <div className="rounded-2xl border dark:border-white/10 border-indigo-100 dark:bg-white/5 bg-white p-6 backdrop-blur shadow-sm transition-colors duration-300">
           <div className="flex items-center justify-between">
-            <span className="text-sm font-semibold uppercase tracking-wider text-textMuted">ATS Score</span>
+            <span className="text-sm font-semibold uppercase tracking-wider dark:text-textMuted text-lightMuted">ATS Score</span>
             <FileText className="h-5 w-5 text-brandPrimary"/>
           </div>
           <div className="mt-4 flex items-baseline">
-            <span className="text-4xl font-extrabold text-white">{data?.metrics?.resumeScore}%</span>
-            <span className="ml-2 text-xs text-textMuted">Resume Audit</span>
+            <span className="text-4xl font-extrabold dark:text-white text-lightText">{data?.metrics?.resumeScore}%</span>
+            <span className="ml-2 text-xs dark:text-textMuted text-lightMuted">Resume Audit</span>
           </div>
         </div>
 
-        <div className="rounded-2xl border border-white/10 bg-cardBg p-6 backdrop-blur">
+        <div className="rounded-2xl border dark:border-white/10 border-indigo-100 dark:bg-white/5 bg-white p-6 backdrop-blur shadow-sm transition-colors duration-300">
           <div className="flex items-center justify-between">
-            <span className="text-sm font-semibold uppercase tracking-wider text-textMuted">Interview Score</span>
+            <span className="text-sm font-semibold uppercase tracking-wider dark:text-textMuted text-lightMuted">Interview Score</span>
             <Mic className="h-5 w-5 text-brandSecondary"/>
           </div>
           <div className="mt-4 flex items-baseline">
-            <span className="text-4xl font-extrabold text-white">{data?.metrics?.interviewScore}%</span>
-            <span className="ml-2 text-xs text-textMuted">Avg Speech Score</span>
+            <span className="text-4xl font-extrabold dark:text-white text-lightText">{data?.metrics?.interviewScore}%</span>
+            <span className="ml-2 text-xs dark:text-textMuted text-lightMuted">Avg Speech Score</span>
           </div>
         </div>
 
-        <div className="rounded-2xl border border-white/10 bg-cardBg p-6 backdrop-blur">
+        <div className="rounded-2xl border dark:border-white/10 border-indigo-100 dark:bg-white/5 bg-white p-6 backdrop-blur shadow-sm transition-colors duration-300">
           <div className="flex items-center justify-between">
-            <span className="text-sm font-semibold uppercase tracking-wider text-textMuted">Placement Readiness</span>
+            <span className="text-sm font-semibold uppercase tracking-wider dark:text-textMuted text-lightMuted">Placement Readiness</span>
             <Award className="h-5 w-5 text-brandAccent"/>
           </div>
           <div className="mt-4 flex items-baseline">
-            <span className="text-4xl font-extrabold text-white">{data?.metrics?.placementReadiness}%</span>
-            <span className="ml-2 text-xs text-textMuted">Score Rating</span>
+            <span className="text-4xl font-extrabold dark:text-white text-lightText">{data?.metrics?.placementReadiness}%</span>
+            <span className="ml-2 text-xs dark:text-textMuted text-lightMuted">Score Rating</span>
           </div>
         </div>
       </div>
@@ -111,8 +111,8 @@ export const StudentDashboard = () => {
       {/* Dynamic Graph and Widgets */}
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         {/* Performance Trend Graph */}
-        <div className="lg:col-span-2 rounded-2xl border border-white/10 bg-cardBg p-6 backdrop-blur">
-          <h3 className="text-lg font-bold text-white mb-6">Preparation Progress Trend</h3>
+        <div className="lg:col-span-2 rounded-2xl border dark:border-white/10 border-indigo-100 dark:bg-white/5 bg-white p-6 backdrop-blur shadow-sm transition-colors duration-300">
+          <h3 className="text-lg font-bold dark:text-white text-lightText mb-6">Preparation Progress Trend</h3>
           
           <div className="h-64 w-full">
             {chartData.length > 0 ? (<ResponsiveContainer width="100%" height="100%">
@@ -142,11 +142,11 @@ export const StudentDashboard = () => {
         </div>
 
         {/* AI Recommendations list */}
-        <div className="rounded-2xl border border-white/10 bg-cardBg p-6 backdrop-blur flex flex-col justify-between">
+        <div className="rounded-2xl border dark:border-white/10 border-indigo-100 dark:bg-white/5 bg-white p-6 backdrop-blur shadow-sm flex flex-col justify-between transition-colors duration-300">
           <div>
-            <h3 className="text-lg font-bold text-white mb-4">InterVexa AI Advisor</h3>
+            <h3 className="text-lg font-bold dark:text-white text-lightText mb-4">InterVexa AI Advisor</h3>
             <div className="space-y-4">
-              {data?.aiSuggestions?.map((sug, idx) => (<div key={idx} className="flex items-start space-x-3 text-sm text-gray-300">
+              {data?.aiSuggestions?.map((sug, idx) => (<div key={idx} className="flex items-start space-x-3 text-sm dark:text-gray-300 text-lightMuted">
                   <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded bg-brandPrimary/10 border border-brandPrimary/20 text-xs font-semibold text-brandPrimary">
                     {idx + 1}
                   </div>
@@ -155,7 +155,7 @@ export const StudentDashboard = () => {
             </div>
           </div>
 
-          <div className="border-t border-white/5 pt-4 mt-6">
+          <div className="border-t dark:border-white/5 border-indigo-100 pt-4 mt-6">
             <button onClick={handleStartMockClick} className="flex w-full items-center justify-center space-x-2 rounded-xl bg-brandPrimary py-2.5 text-xs font-semibold text-white shadow shadow-brandPrimary/25 transition hover:bg-brandPrimary/80">
               <Play className="h-3 w-3 fill-white"/>
               <span>Launch Mock Interview</span>
@@ -165,49 +165,49 @@ export const StudentDashboard = () => {
       </div>
 
       {/* Quick Actions Panel */}
-      <div className="rounded-2xl border border-white/10 bg-cardBg p-6 backdrop-blur">
-        <h3 className="text-lg font-bold text-white mb-6">Quick Operations Panel</h3>
+      <div className="rounded-2xl border dark:border-white/10 border-indigo-100 dark:bg-white/5 bg-white p-6 backdrop-blur shadow-sm transition-colors duration-300">
+        <h3 className="text-lg font-bold dark:text-white text-lightText mb-6">Quick Operations Panel</h3>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-          <button onClick={handleStartMockClick} className="flex items-center space-x-4 rounded-xl border border-white/5 bg-white/2 px-5 py-4 text-left transition hover:bg-white/5 hover:border-brandPrimary/30">
+          <button onClick={handleStartMockClick} className="flex items-center space-x-4 rounded-xl border dark:border-white/5 border-indigo-100 dark:bg-transparent bg-indigo-50 px-5 py-4 text-left transition dark:hover:bg-white/5 hover:bg-indigo-100 hover:border-brandPrimary/30">
             <div className="rounded-lg bg-brandPrimary/10 p-3 text-brandPrimary">
               <Mic className="h-5 w-5"/>
             </div>
             <div>
-              <h4 className="font-semibold text-white text-sm">Mock Interview</h4>
-              <p className="text-xs text-textMuted mt-1">Start LiveKit voice room session</p>
+              <h4 className="font-semibold dark:text-white text-lightText text-sm">Mock Interview</h4>
+              <p className="text-xs dark:text-textMuted text-lightMuted mt-1">Start LiveKit voice room session</p>
             </div>
           </button>
 
-          <button onClick={() => navigate('/resume')} className="flex items-center space-x-4 rounded-xl border border-white/5 bg-white/2 px-5 py-4 text-left transition hover:bg-white/5 hover:border-brandSecondary/30">
+          <button onClick={() => navigate('/resume')} className="flex items-center space-x-4 rounded-xl border dark:border-white/5 border-indigo-100 dark:bg-transparent bg-indigo-50 px-5 py-4 text-left transition dark:hover:bg-white/5 hover:bg-indigo-100 hover:border-brandSecondary/30">
             <div className="rounded-lg bg-brandSecondary/10 p-3 text-brandSecondary">
               <FileText className="h-5 w-5"/>
             </div>
             <div>
-              <h4 className="font-semibold text-white text-sm">Resume Scanner</h4>
-              <p className="text-xs text-textMuted mt-1">Upload CV for ATS analysis</p>
+              <h4 className="font-semibold dark:text-white text-lightText text-sm">Resume Scanner</h4>
+              <p className="text-xs dark:text-textMuted text-lightMuted mt-1">Upload CV for ATS analysis</p>
             </div>
           </button>
 
-          <button onClick={() => navigate('/career')} className="flex items-center space-x-4 rounded-xl border border-white/5 bg-white/2 px-5 py-4 text-left transition hover:bg-white/5 hover:border-brandAccent/30">
+          <button onClick={() => navigate('/career')} className="flex items-center space-x-4 rounded-xl border dark:border-white/5 border-indigo-100 dark:bg-transparent bg-indigo-50 px-5 py-4 text-left transition dark:hover:bg-white/5 hover:bg-indigo-100 hover:border-brandAccent/30">
             <div className="rounded-lg bg-brandAccent/10 p-3 text-brandAccent">
               <Map className="h-5 w-5"/>
             </div>
             <div>
-              <h4 className="font-semibold text-white text-sm">Career Roadmap</h4>
-              <p className="text-xs text-textMuted mt-1">Generate learning targets</p>
+              <h4 className="font-semibold dark:text-white text-lightText text-sm">Career Roadmap</h4>
+              <p className="text-xs dark:text-textMuted text-lightMuted mt-1">Generate learning targets</p>
             </div>
           </button>
         </div>
       </div>
 
       {/* History table */}
-      <div className="rounded-2xl border border-white/10 bg-cardBg p-6 backdrop-blur">
-        <h3 className="text-lg font-bold text-white mb-6">Historical Evaluations Logs</h3>
+      <div className="rounded-2xl border dark:border-white/10 border-indigo-100 dark:bg-white/5 bg-white p-6 backdrop-blur shadow-sm transition-colors duration-300">
+        <h3 className="text-lg font-bold dark:text-white text-lightText mb-6">Historical Evaluations Logs</h3>
         
         {data?.previousInterviews?.length > 0 ? (<div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="border-b border-white/5 text-xs uppercase tracking-wider text-textMuted font-bold">
+                <tr className="border-b dark:border-white/5 border-indigo-100 text-xs uppercase tracking-wider dark:text-textMuted text-lightMuted font-bold">
                   <th className="pb-3">Interview ID</th>
                   <th className="pb-3">Date Completed</th>
                   <th className="pb-3">Overall Performance</th>
@@ -215,12 +215,12 @@ export const StudentDashboard = () => {
                   <th className="pb-3">Action</th>
                 </tr>
               </thead>
-              <tbody className="text-sm divide-y divide-white/5">
-                {data.previousInterviews.map((session) => (<tr key={session._id} className="hover:bg-white/1">
-                    <td className="py-4 font-mono text-xs text-textMuted">{session._id.substring(0, 12)}...</td>
-                    <td className="py-4 text-gray-300">{new Date(session.createdAt).toLocaleDateString()}</td>
-                    <td className="py-4 font-semibold text-white">{session.reportId?.overallScore || 0}%</td>
-                    <td className="py-4 text-gray-300">{session.reportId?.communicationScore || 0}%</td>
+              <tbody className="text-sm dark:divide-y dark:divide-white/5 divide-y divide-indigo-50">
+                {data.previousInterviews.map((session) => (<tr key={session._id} className="dark:hover:bg-white/[0.02] hover:bg-indigo-50 transition-colors">
+                    <td className="py-4 font-mono text-xs dark:text-textMuted text-lightMuted">{session._id.substring(0, 12)}...</td>
+                    <td className="py-4 dark:text-gray-300 text-lightMuted">{new Date(session.createdAt).toLocaleDateString()}</td>
+                    <td className="py-4 font-semibold dark:text-white text-lightText">{session.reportId?.overallScore || 0}%</td>
+                    <td className="py-4 dark:text-gray-300 text-lightMuted">{session.reportId?.communicationScore || 0}%</td>
                     <td className="py-4">
                       <button onClick={() => navigate(`/report/${session.reportId?._id || session._id}`)} className="flex items-center space-x-1.5 text-xs font-semibold text-brandPrimary hover:underline">
                         <span>View Report</span>
