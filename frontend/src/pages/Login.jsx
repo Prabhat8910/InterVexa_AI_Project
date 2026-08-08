@@ -37,7 +37,6 @@ export const Login = () => {
                     return;
                 }
                 if (user.role === 'student') navigate('/dashboard');
-                else if (user.role === 'recruiter') navigate('/recruiter');
                 else if (user.role === 'university') navigate('/university');
                 else if (user.role === 'admin') navigate('/admin');
             }
@@ -51,8 +50,6 @@ export const Login = () => {
 
     const getHeaderInfo = () => {
         switch (selectedRole) {
-            case 'recruiter':
-                return { title: 'Recruiter Sign In', subtitle: 'Sign in to screen talent & view AI evaluations' };
             case 'university':
                 return { title: 'University Sign In', subtitle: 'Sign in to track cohort placement metrics' };
             default:
@@ -79,8 +76,8 @@ export const Login = () => {
                     <label className="block text-xs font-semibold uppercase tracking-wider dark:text-gray-400 text-lightMuted mb-2 text-center">
                         Select Your Profile Role
                     </label>
-                    <div className="grid grid-cols-3 gap-2">
-                        {['student', 'recruiter', 'university'].map(role => (
+                    <div className="grid grid-cols-2 gap-2">
+                        {['student', 'university'].map(role => (
                             <button
                                 key={role}
                                 type="button"

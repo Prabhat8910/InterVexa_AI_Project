@@ -48,7 +48,6 @@ export const AdminDashboard = () => {
       </div>);
     }
     const studentsCount = users.filter(u => u.role === 'student').length;
-    const recruitersCount = users.filter(u => u.role === 'recruiter').length;
     const universitiesCount = users.filter(u => u.role === 'university').length;
     return (<div className="space-y-6">
       <div className="rounded-2xl border border-white/10 bg-cardBg p-6 backdrop-blur">
@@ -59,7 +58,7 @@ export const AdminDashboard = () => {
       </div>
 
       {/* Cohort counters */}
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-4">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
         <div className="rounded-2xl border border-white/10 bg-cardBg p-6 backdrop-blur">
           <span className="text-xs text-textMuted uppercase tracking-wider block">Total Users</span>
           <h4 className="text-3xl font-extrabold text-white mt-2">{users.length}</h4>
@@ -67,10 +66,6 @@ export const AdminDashboard = () => {
         <div className="rounded-2xl border border-white/10 bg-cardBg p-6 backdrop-blur">
           <span className="text-xs text-textMuted uppercase tracking-wider block">Students</span>
           <h4 className="text-3xl font-extrabold text-brandPrimary mt-2">{studentsCount}</h4>
-        </div>
-        <div className="rounded-2xl border border-white/10 bg-cardBg p-6 backdrop-blur">
-          <span className="text-xs text-textMuted uppercase tracking-wider block">Recruiters</span>
-          <h4 className="text-3xl font-extrabold text-brandSecondary mt-2">{recruitersCount}</h4>
         </div>
         <div className="rounded-2xl border border-white/10 bg-cardBg p-6 backdrop-blur">
           <span className="text-xs text-textMuted uppercase tracking-wider block">Universities</span>

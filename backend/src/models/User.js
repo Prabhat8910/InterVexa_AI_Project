@@ -6,12 +6,11 @@ const UserSchema = new Schema({
     password: { type: String, required: true },
     role: {
         type: String,
-        enum: ['student', 'recruiter', 'university', 'admin'],
+        enum: ['student', 'university', 'admin'],
         default: 'student'
     },
     avatarUrl: { type: String },
     universityId: { type: Schema.Types.ObjectId, ref: 'University' },
-    recruiterId: { type: Schema.Types.ObjectId, ref: 'Recruiter' },
     resetPasswordToken: { type: String },
     resetPasswordExpires: { type: Date }
 }, {

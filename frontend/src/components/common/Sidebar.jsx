@@ -18,9 +18,6 @@ export const Sidebar = () => {
         { name: 'Placement Analytics', path: '/analytics', icon: <TrendingUp className="h-5 w-5"/> },
         { name: 'Live Interview Room', path: '/live-interview', icon: <Video className="h-5 w-5"/>, badge: 'NEW' },
     ];
-    const recruiterMenu = [
-        { name: 'Candidate Screening', path: '/recruiter', icon: <Users className="h-5 w-5"/> },
-    ];
     const universityMenu = [
         { name: 'Cohort Analytics', path: '/university', icon: <GraduationCap className="h-5 w-5"/> },
     ];
@@ -30,7 +27,6 @@ export const Sidebar = () => {
     ];
 
     let menuItems = studentMenu;
-    if (user.role === 'recruiter') menuItems = recruiterMenu;
     if (user.role === 'university') menuItems = universityMenu;
     if (user.role === 'admin') menuItems = adminMenu;
 
@@ -51,7 +47,7 @@ export const Sidebar = () => {
                         <NavLink
                             key={item.name}
                             to={item.path}
-                            end={item.path === '/dashboard' || item.path === '/recruiter' || item.path === '/university' || item.path === '/admin'}
+                            end={item.path === '/dashboard' || item.path === '/university' || item.path === '/admin'}
                             className={({ isActive }) =>
                                 `flex items-center justify-between rounded-xl px-4 py-3 text-sm font-medium transition ${
                                     isActive

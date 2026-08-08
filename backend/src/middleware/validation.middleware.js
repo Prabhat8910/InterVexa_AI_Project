@@ -10,7 +10,7 @@ export const validateRegister = (req, res, next) => {
     if (password.length < 6) {
         return res.status(400).json({ message: 'Password must be at least 6 characters long.' });
     }
-    const validRoles = ['student', 'recruiter', 'university', 'admin'];
+    const validRoles = ['student', 'university', 'admin'];
     if (!validRoles.includes(role)) {
         return res.status(400).json({ message: 'Invalid user role selected.' });
     }

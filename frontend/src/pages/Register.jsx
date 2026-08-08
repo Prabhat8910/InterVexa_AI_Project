@@ -4,18 +4,15 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { useAuth } from '../context/AuthContext';
-import { Brain, Lock, Mail, User, Building, Landmark, ArrowRight, AlertCircle } from 'lucide-react';
+import { Brain, Lock, Mail, User, Landmark, ArrowRight, AlertCircle } from 'lucide-react';
 const registerSchema = z.object({
     name: z.string().min(2, 'Name must be at least 2 characters long'),
     email: z.string().email('Please enter a valid email address'),
     password: z.string().min(6, 'Password must be at least 6 characters long'),
-    role: z.enum(['student', 'recruiter', 'university']),
-    companyName: z.string().optional(),
+    role: z.enum(['student', 'university']),
     universityCode: z.string().optional(),
     universityName: z.string().optional(),
 }).refine(data => {
-    if (data.role === 'recruiter' && !data.companyName)
-        return false;
     if (data.role === 'university' && (!data.universityCode || !data.universityName))
         return false;
     return true;
@@ -47,8 +44,6 @@ export const Register = () => {
                 const user = JSON.parse(savedUser);
                 if (user.role === 'student')
                     navigate('/dashboard');
-                else if (user.role === 'recruiter')
-                    navigate('/recruiter');
                 else if (user.role === 'university')
                     navigate('/university');
                 else if (user.role === 'admin')
@@ -84,8 +79,8 @@ export const Register = () => {
             <label className="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">
               Select Your Profile Role
             </label>
-            <div className="grid grid-cols-3 gap-2">
-              {['student', 'recruiter', 'university'].map(role => (<button key={role} type="button" onClick={() => handleRoleChange(role)} className={`rounded-xl border py-2.5 text-xs font-semibold uppercase tracking-wide transition ${selectedRole === role
+            <div className="grid grid-cols-2 gap-2">
+              {['student', 'university'].map(role => (<button key={role} type="button" onClick={() => handleRoleChange(role)} className={`rounded-xl border py-2.5 text-xs font-semibold uppercase tracking-wide transition ${selectedRole === role
                 ? 'border-brandPrimary bg-brandPrimary/20 text-white shadow-lg'
                 : 'border-white/10 bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white'}`}>
                   {role}
@@ -138,17 +133,6 @@ export const Register = () => {
                 <input type="text" placeholder="e.g. DIT123 (Enter to join college cohort)" {...register('universityCode')} className="w-full rounded-xl border border-white/10 bg-white/5 py-3 pl-11 pr-4 text-sm text-white outline-none transition focus:border-brandPrimary focus:bg-white/10"/>
               </div>
               {errors.universityCode && (<p className="mt-1 text-xs text-red-400">{errors.universityCode.message}</p>)}
-            </div>)}
-
-          {selectedRole === 'recruiter' && (<div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">
-                Company Name
-              </label>
-              <div className="relative">
-                <Building className="absolute left-3 top-3.5 h-5 w-5 text-gray-500"/>
-                <input type="text" placeholder="e.g. Google India" {...register('companyName')} className="w-full rounded-xl border border-white/10 bg-white/5 py-3 pl-11 pr-4 text-sm text-white outline-none transition focus:border-brandPrimary focus:bg-white/10"/>
-              </div>
-              {errors.companyName && (<p className="mt-1 text-xs text-red-400">{errors.companyName.message}</p>)}
             </div>)}
 
           {selectedRole === 'university' && (<div className="grid grid-cols-1 gap-4 sm:grid-cols-2">

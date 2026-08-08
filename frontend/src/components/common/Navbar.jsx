@@ -13,7 +13,6 @@ export const Navbar = () => {
     const handleDashboardRedirect = () => {
         if (!user) return;
         if (user.role === 'student') navigate('/dashboard');
-        else if (user.role === 'recruiter') navigate('/recruiter');
         else if (user.role === 'university') navigate('/university');
         else if (user.role === 'admin') navigate('/admin');
     };

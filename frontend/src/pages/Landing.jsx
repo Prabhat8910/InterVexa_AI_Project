@@ -43,18 +43,6 @@ export const Landing = () => {
                 'Departmental Progress Audits',
                 'Bulk Results Report Export'
             ]
-        },
-        {
-            title: 'For Recruiters',
-            subtitle: 'Accelerate Screening',
-            icon: <Users className="h-6 w-6 text-brandAccent"/>,
-            features: [
-                'ATS Ranking Filter',
-                'Automatic Performance Scoring',
-                'Detailed Communication Audits',
-                'AI Hiring Suitability Recommendation',
-                'Instant Candidate Pre-Screening'
-            ]
         }
     ];
 
@@ -191,10 +179,6 @@ export const Landing = () => {
                         {
                             q: 'How does the Voice Mock Interview work?',
                             a: 'Once connected, a LiveKit room is allocated and our AI interviewer participant greets you. When you speak, your microphone is streamed directly to Groq. Silence boundary limits are auto-detected, generating the next follow-up question dynamically.'
-                        },
-                        {
-                            q: 'Can recruiters review my mock reports?',
-                            a: 'Yes! If you connect through a university domain or release your profile, corporate recruiters can search candidate matrices, review confidence/competency trends, and read the turn-by-turn evaluation sheets.'
                         },
                         {
                             q: 'What models does the platform run on?',

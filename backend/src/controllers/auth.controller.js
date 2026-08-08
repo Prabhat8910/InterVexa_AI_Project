@@ -4,7 +4,6 @@ import crypto from 'crypto';
 import User from '../models/User.js';
 import StudentProfile from '../models/StudentProfile.js';
 import University from '../models/University.js';
-import Recruiter from '../models/Recruiter.js';
 const signToken = (id, email, role) => {
     const jwtSecret = process.env.JWT_SECRET;
     if (!jwtSecret) {
@@ -52,17 +51,6 @@ export const register = async (req, res, next) => {
                 weaknesses: []
             });
             await studentProfile.save();
-        }
-        else if (role === 'recruiter') {
-            if (!companyName) {
-                return res.status(400).json({ message: 'Company name is required for recruiter registration.' });
-            }
-            const recruiter = new Recruiter({
-                companyName,
-                screenedCandidates: []
-            });
-            const savedRecruiter = await recruiter.save();
-            user.recruiterId = savedRecruiter._id;
         }
         else if (role === 'university') {
             if (!universityCode || !universityName) {

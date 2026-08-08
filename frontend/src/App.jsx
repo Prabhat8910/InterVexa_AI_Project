@@ -15,7 +15,6 @@ import ResumeAnalyzer from './pages/ResumeAnalyzer';
 import CareerAdvisor from './pages/CareerAdvisor';
 import PlacementAnalytics from './pages/PlacementAnalytics';
 import ReportDetail from './pages/ReportDetail';
-import RecruiterDashboard from './pages/RecruiterDashboard';
 import UniversityDashboard from './pages/UniversityDashboard';
 import AdminDashboard from './pages/AdminDashboard';
 import LiveInterviewRoom from './pages/LiveInterviewRoom';
@@ -50,9 +49,6 @@ const App = () => {
               
               {/* Evaluation Report Detail (All Roles with Auth) */}
               <Route path="/report/:id" element={<ReportDetail />}/>
-
-              {/* Recruiter Role Routes */}
-              <Route path="/recruiter" element={<RecruiterDashboard />}/>
 
               {/* University Role Routes */}
               <Route path="/university" element={<UniversityDashboard />}/>
