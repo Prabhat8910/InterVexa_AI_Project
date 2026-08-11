@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { LayoutDashboard, Mic, FileText, Map, TrendingUp, Users, GraduationCap, Database, LogOut, Brain, Video } from 'lucide-react';
+import { LayoutDashboard, Mic, FileText, Map, TrendingUp, Users, GraduationCap, Database, LogOut, Brain, Video, Settings } from 'lucide-react';
 
 export const Sidebar = () => {
     const { user, logout } = useAuth();
@@ -17,13 +17,16 @@ export const Sidebar = () => {
         { name: 'Career Advisor', path: '/career', icon: <Map className="h-5 w-5"/> },
         { name: 'Placement Analytics', path: '/analytics', icon: <TrendingUp className="h-5 w-5"/> },
         { name: 'Live Interview Room', path: '/live-interview', icon: <Video className="h-5 w-5"/>, badge: 'NEW' },
+        { name: 'Settings', path: '/settings', icon: <Settings className="h-5 w-5"/> },
     ];
     const universityMenu = [
         { name: 'Cohort Analytics', path: '/university', icon: <GraduationCap className="h-5 w-5"/> },
+        { name: 'Settings', path: '/settings', icon: <Settings className="h-5 w-5"/> },
     ];
     const adminMenu = [
         { name: 'Users Moderation', path: '/admin', icon: <Users className="h-5 w-5"/> },
         { name: 'System Logs', path: '/admin/logs', icon: <Database className="h-5 w-5"/> },
+        { name: 'Settings', path: '/settings', icon: <Settings className="h-5 w-5"/> },
     ];
 
     let menuItems = studentMenu;
@@ -72,14 +75,27 @@ export const Sidebar = () => {
 
             {/* User profile + logout */}
             <div className="border-t dark:border-white/10 border-indigo-100 pt-6 transition-colors duration-300">
-                <div className="flex items-center space-x-3 px-2 mb-6">
-                    <div className="h-10 w-10 rounded-full bg-gradient-to-br from-brandPrimary to-brandSecondary flex items-center justify-center font-bold text-white uppercase shadow-lg shadow-brandPrimary/15">
-                        {user.name.charAt(0)}
-                    </div>
-                    <div>
-                        <h4 className="text-sm font-medium dark:text-white text-lightText truncate max-w-[140px]">{user.name}</h4>
+                <div
+                    className="flex items-center space-x-3 px-2 mb-4 cursor-pointer rounded-xl p-2 transition dark:hover:bg-white/5 hover:bg-indigo-50"
+                    onClick={() => navigate('/settings')}
+                    title="Open Settings"
+                >
+                    {user.avatarUrl ? (
+                        <img
+                            src={user.avatarUrl}
+                            alt={user.name}
+                            className="h-10 w-10 rounded-full object-cover ring-2 ring-brandPrimary/30 shadow-lg"
+                        />
+                    ) : (
+                        <div className="h-10 w-10 rounded-full bg-gradient-to-br from-brandPrimary to-brandSecondary flex items-center justify-center font-bold text-white uppercase shadow-lg shadow-brandPrimary/15">
+                            {user.name.charAt(0)}
+                        </div>
+                    )}
+                    <div className="flex-1 min-w-0">
+                        <h4 className="text-sm font-medium dark:text-white text-lightText truncate max-w-[120px]">{user.name}</h4>
                         <span className="text-xs dark:text-textMuted text-lightMuted capitalize">{user.role}</span>
                     </div>
+                    <Settings className="h-4 w-4 dark:text-textMuted text-lightMuted flex-shrink-0"/>
                 </div>
 
                 <button

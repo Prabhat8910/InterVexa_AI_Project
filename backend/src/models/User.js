@@ -10,9 +10,16 @@ const UserSchema = new Schema({
         default: 'student'
     },
     avatarUrl: { type: String },
+    avatarPublicId: { type: String },
     universityId: { type: Schema.Types.ObjectId, ref: 'University' },
     resetPasswordToken: { type: String },
-    resetPasswordExpires: { type: Date }
+    resetPasswordExpires: { type: Date },
+    notifications: {
+        interviewReminders: { type: Boolean, default: true },
+        reportReady:        { type: Boolean, default: true },
+        weeklyDigest:       { type: Boolean, default: false },
+        placementUpdates:   { type: Boolean, default: true }
+    }
 }, {
     timestamps: true
 });

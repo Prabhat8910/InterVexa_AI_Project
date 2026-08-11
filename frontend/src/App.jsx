@@ -20,6 +20,7 @@ import AdminDashboard from './pages/AdminDashboard';
 import LiveInterviewRoom from './pages/LiveInterviewRoom';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
+import Settings from './pages/Settings';
 const queryClient = new QueryClient();
 const App = () => {
     return (<QueryClientProvider client={queryClient}>
@@ -56,6 +57,9 @@ const App = () => {
               {/* System Admin Routes */}
               <Route path="/admin" element={<AdminDashboard />}/>
               <Route path="/admin/logs" element={<AdminDashboard />}/>
+
+              {/* Settings — all authenticated roles */}
+              <Route path="/settings" element={<Settings />}/>
             </Route>
 
             {/* Catch-all Redirect */}

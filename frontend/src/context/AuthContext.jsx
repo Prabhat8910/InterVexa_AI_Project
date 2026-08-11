@@ -52,7 +52,14 @@ export const AuthProvider = ({ children }) => {
         localStorage.removeItem('user');
         window.location.href = '/';
     };
-    return (<AuthContext.Provider value={{ user, token, loading, login, registerUser, logout }}>
+    const updateUser = (patch) => {
+        setUser(prev => {
+            const updated = { ...prev, ...patch };
+            localStorage.setItem('user', JSON.stringify(updated));
+            return updated;
+        });
+    };
+    return (<AuthContext.Provider value={{ user, token, loading, login, registerUser, logout, updateUser }}>
       {children}
     </AuthContext.Provider>);
 };

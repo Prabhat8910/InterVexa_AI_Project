@@ -13,6 +13,7 @@ import analyticsRoutes from './routes/analytics.routes.js';
 import universityRoutes from './routes/university.routes.js';
 import adminRoutes from './routes/admin.routes.js';
 import liveInterviewRoutes from './routes/liveInterview.routes.js';
+import settingsRoutes from './routes/settings.routes.js';
 import { errorHandler } from './middleware/error.middleware.js';
 const app = express();
 // Security Middlewares
@@ -73,6 +74,7 @@ app.use('/api/v1/analytics', analyticsRoutes);
 app.use('/api/v1/university', universityRoutes);
 app.use('/api/v1/admin', adminRoutes);
 app.use('/api/v1/live-interview', liveInterviewRoutes);
+app.use('/api/v1/settings', settingsRoutes);
 // Global Error Handler Middleware
 app.use(errorHandler);
 export default app;
