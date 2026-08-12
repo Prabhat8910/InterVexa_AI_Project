@@ -8,7 +8,15 @@ export const getSettings = async (req, res, next) => {
     try {
         const user = await User.findById(req.user.id).select('-password -resetPasswordToken -resetPasswordExpires');
         if (!user) return res.status(404).json({ message: 'User not found.' });
-        res.status(200).json({ user });
+
+        // For students, also pull their department from StudentProfile
+        let department = '';
+        if (user.role === 'student') {
+            const profile = await StudentProfile.findOne({ userId: user._id }).select('department');
+            department = profile?.department || '';
+        }
+
+        res.status(200).json({ user: { ...user.toObject(), department } });
     } catch (err) {
         next(err);
     }
@@ -17,7 +25,7 @@ export const getSettings = async (req, res, next) => {
 // ─── PATCH /api/v1/settings/profile ──────────────────────────────────────────
 export const updateProfile = async (req, res, next) => {
     try {
-        const { name, email } = req.body;
+        const { name, email, department } = req.body;
 
         if (!name || !email) {
             return res.status(400).json({ message: 'Name and email are required.' });
@@ -39,7 +47,16 @@ export const updateProfile = async (req, res, next) => {
             { new: true, runValidators: true }
         ).select('-password -resetPasswordToken -resetPasswordExpires');
 
-        res.status(200).json({ message: 'Profile updated successfully.', user });
+        // Save department into StudentProfile for student role
+        if (user.role === 'student' && department !== undefined) {
+            await StudentProfile.findOneAndUpdate(
+                { userId: req.user.id },
+                { department: department.trim() },
+                { new: true }
+            );
+        }
+
+        res.status(200).json({ message: 'Profile updated successfully.', user: { ...user.toObject(), department: department || '' } });
     } catch (err) {
         next(err);
     }

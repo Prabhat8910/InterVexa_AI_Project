@@ -1,6 +1,7 @@
 import { Schema, model } from 'mongoose';
 const StudentProfileSchema = new Schema({
     userId: { type: Schema.Types.ObjectId, ref: 'User', unique: true, required: true, index: true },
+    department: { type: String, default: '' },
     resumeUrl: { type: String },
     resumeRawText: { type: String },
     atsScore: { type: Number, default: 0 },

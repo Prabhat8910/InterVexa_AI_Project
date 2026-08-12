@@ -124,15 +124,43 @@ export const Register = () => {
           </div>
 
           {/* Conditional Role-Specific Fields */}
-          {selectedRole === 'student' && (<div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">
-                University Code (Optional)
-              </label>
-              <div className="relative">
-                <Landmark className="absolute left-3 top-3.5 h-5 w-5 text-gray-500"/>
-                <input type="text" placeholder="e.g. DIT123 (Enter to join college cohort)" {...register('universityCode')} className="w-full rounded-xl border border-white/10 bg-white/5 py-3 pl-11 pr-4 text-sm text-white outline-none transition focus:border-brandPrimary focus:bg-white/10"/>
+          {selectedRole === 'student' && (<div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <div>
+                <label className="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">
+                  Department / Branch
+                </label>
+                <div className="relative">
+                  <select
+                    {...register('department')}
+                    defaultValue=""
+                    className="w-full rounded-xl border border-white/10 bg-white/5 py-3 px-4 text-sm text-white outline-none transition focus:border-brandPrimary focus:bg-white/10 appearance-none"
+                  >
+                    <option value="" disabled className="bg-[#0b0f19] text-gray-400">Select your branch</option>
+                    <option value="Computer Science & Engineering" className="bg-[#0b0f19]">Computer Science &amp; Engineering</option>
+                    <option value="Electronics & Communication" className="bg-[#0b0f19]">Electronics &amp; Communication</option>
+                    <option value="Information Technology" className="bg-[#0b0f19]">Information Technology</option>
+                    <option value="Mechanical Engineering" className="bg-[#0b0f19]">Mechanical Engineering</option>
+                    <option value="Civil Engineering" className="bg-[#0b0f19]">Civil Engineering</option>
+                    <option value="Electrical Engineering" className="bg-[#0b0f19]">Electrical Engineering</option>
+                    <option value="Chemical Engineering" className="bg-[#0b0f19]">Chemical Engineering</option>
+                    <option value="Biotechnology" className="bg-[#0b0f19]">Biotechnology</option>
+                    <option value="Data Science" className="bg-[#0b0f19]">Data Science</option>
+                    <option value="Artificial Intelligence" className="bg-[#0b0f19]">Artificial Intelligence</option>
+                    <option value="Other" className="bg-[#0b0f19]">Other</option>
+                  </select>
+                </div>
+                {errors.department && (<p className="mt-1 text-xs text-red-400">{errors.department.message}</p>)}
               </div>
-              {errors.universityCode && (<p className="mt-1 text-xs text-red-400">{errors.universityCode.message}</p>)}
+              <div>
+                <label className="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">
+                  University Code (Optional)
+                </label>
+                <div className="relative">
+                  <Landmark className="absolute left-3 top-3.5 h-5 w-5 text-gray-500"/>
+                  <input type="text" placeholder="e.g. DIT123" {...register('universityCode')} className="w-full rounded-xl border border-white/10 bg-white/5 py-3 pl-11 pr-4 text-sm text-white outline-none transition focus:border-brandPrimary focus:bg-white/10"/>
+                </div>
+                {errors.universityCode && (<p className="mt-1 text-xs text-red-400">{errors.universityCode.message}</p>)}
+              </div>
             </div>)}
 
           {selectedRole === 'university' && (<div className="grid grid-cols-1 gap-4 sm:grid-cols-2">

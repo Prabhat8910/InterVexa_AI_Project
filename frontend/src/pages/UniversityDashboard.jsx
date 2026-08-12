@@ -90,6 +90,7 @@ export const UniversityDashboard = () => {
               <thead>
                 <tr className="border-b border-white/5 text-xs uppercase tracking-wider text-textMuted font-bold">
                   <th className="pb-3">Student Name</th>
+                  <th className="pb-3">Department</th>
                   <th className="pb-3">Target Role</th>
                   <th className="pb-3">ATS Score</th>
                   <th className="pb-3">Mock Avg</th>
@@ -102,6 +103,11 @@ export const UniversityDashboard = () => {
                     <td className="py-4">
                       <div className="font-semibold text-white">{student.name}</div>
                       <div className="text-xs text-textMuted">{student.email}</div>
+                    </td>
+                    <td className="py-4">
+                      <span className="rounded-full bg-brandPrimary/10 border border-brandPrimary/20 px-2.5 py-1 text-xs font-medium text-brandPrimary">
+                        {student.department || 'Not Specified'}
+                      </span>
                     </td>
                     <td className="py-4 text-gray-300">{student.targetRole || 'Not Set'}</td>
                     <td className="py-4 font-mono text-white">{student.atsScore}%</td>

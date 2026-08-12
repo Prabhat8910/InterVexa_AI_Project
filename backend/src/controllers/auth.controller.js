@@ -15,7 +15,7 @@ const signToken = (id, email, role) => {
 };
 export const register = async (req, res, next) => {
     try {
-        const { name, email, password, role, companyName, universityCode, universityName } = req.body;
+        const { name, email, password, role, companyName, universityCode, universityName, department } = req.body;
         // Check if user already exists
         const userExists = await User.findOne({ email });
         if (userExists) {
@@ -43,6 +43,7 @@ export const register = async (req, res, next) => {
             }
             const studentProfile = new StudentProfile({
                 userId: user._id,
+                department: department || '',
                 skills: [],
                 experience: [],
                 education: [],

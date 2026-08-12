@@ -88,6 +88,7 @@ const Settings = () => {
     // Profile tab state
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
+    const [department, setDepartment] = useState('');
     const [profileSaving, setProfileSaving] = useState(false);
 
     // Avatar state
@@ -127,6 +128,7 @@ const Settings = () => {
                 setName(u.name || '');
                 setEmail(u.email || '');
                 setAvatarPreview(u.avatarUrl || null);
+                if (u.department !== undefined) setDepartment(u.department || '');
                 if (u.notifications) {
                     setNotifs({
                         interviewReminders: u.notifications.interviewReminders ?? true,
@@ -187,7 +189,7 @@ const Settings = () => {
         e.preventDefault();
         setProfileSaving(true);
         try {
-            const { data } = await api.patch('/settings/profile', { name, email });
+            const { data } = await api.patch('/settings/profile', { name, email, department });
             updateUser({ name: data.user.name, email: data.user.email });
             showToast('Profile updated successfully!');
         } catch (err) {
@@ -365,6 +367,33 @@ const Settings = () => {
                                 placeholder="you@example.com"
                                 hint="Changing your email will require re-login on next session."
                             />
+                            {/* Department — only visible for students */}
+                            {user?.role === 'student' && (
+                                <div className="space-y-1.5">
+                                    <label htmlFor="settings-department" className="block text-sm font-medium dark:text-gray-300 text-lightMuted">
+                                        Department / Branch
+                                    </label>
+                                    <select
+                                        id="settings-department"
+                                        value={department}
+                                        onChange={e => setDepartment(e.target.value)}
+                                        className="w-full rounded-xl border dark:border-white/10 border-indigo-200 dark:bg-white/5 bg-indigo-50/50 px-4 py-2.5 text-sm dark:text-white text-lightText focus:outline-none focus:ring-2 focus:ring-brandPrimary/50 transition"
+                                    >
+                                        <option value="">Not Specified</option>
+                                        <option value="Computer Science & Engineering">Computer Science &amp; Engineering</option>
+                                        <option value="Electronics & Communication">Electronics &amp; Communication</option>
+                                        <option value="Information Technology">Information Technology</option>
+                                        <option value="Mechanical Engineering">Mechanical Engineering</option>
+                                        <option value="Civil Engineering">Civil Engineering</option>
+                                        <option value="Electrical Engineering">Electrical Engineering</option>
+                                        <option value="Chemical Engineering">Chemical Engineering</option>
+                                        <option value="Biotechnology">Biotechnology</option>
+                                        <option value="Data Science">Data Science</option>
+                                        <option value="Artificial Intelligence">Artificial Intelligence</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                            )}
                             <div className="pt-2 flex justify-end">
                                 <button
                                     id="profile-save-btn"
